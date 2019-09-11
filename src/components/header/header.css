@@ -1,0 +1,27 @@
+.header h2 {
+    margin-right: 140px;
+    color: yellow;
+}
+
+.header-panel {
+    align-items: center;
+}
+
+.btn {
+    max-height: 50px;
+    color: black;
+    background-color: yellow;
+    border-color: yellow;
+    margin-right: 40px;
+}
+
+.btn:hover {
+    color: yellow;
+    background-color: black;
+    border-color: yellow;
+}
+
+.btn:active {
+    border-color: yellow;
+    background-color: black;
+}

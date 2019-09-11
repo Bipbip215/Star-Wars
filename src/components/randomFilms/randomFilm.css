@@ -1,0 +1,26 @@
+.random {
+    margin-top: 2rem;
+    margin-bottom: 0;
+}
+
+.random img {
+    max-width: 250px;
+    max-height: 250px;
+    border-radius: 10px;
+}
+
+.random h4 {
+    color: yellow;
+}
+
+.list-group-item {
+    color: white;
+}
+
+.random .list-group-item:hover {
+    background-color: #222222;
+}
+
+.term {
+    padding-right: 20px;
+}
