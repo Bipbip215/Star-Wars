@@ -2,7 +2,7 @@ export default class SwapiService {
 
     _apiBase = 'https://swapi.co/api';
 
-    async getResource(url) {
+    getResource = async (url) => {
         const res = await fetch(`${this._apiBase}${url}`);
 
         if(!res.ok) {
@@ -13,42 +13,42 @@ export default class SwapiService {
         return await res.json();
     };
 
-    async getAllPeople() {
+    getAllPeople = async () => {
         const res = await this.getResource(`/people/`);
         return res.results.map((person) => this._transformPerson(person));
     };
 
-    async getPerson(id) {
+    getPerson = async (id) => {
         const person = await this.getResource(`/people/${id}/`);
         return this._transformPerson(person);
     };
 
-    async getAllPlanets() {
+    getAllPlanets = async () => {
         const res = await this.getResource(`/planets/`);
         return res.results.map((planet) => this._transformPlanet(planet));
     };
 
-    async getPlanet(id) {
+    getPlanet = async (id) => {
         const planet = await this.getResource(`/planets/${id}/`);
         return this._transformPlanet(planet);
     };
 
-    async getAllStarships() {
+    getAllStarships = async () => {
         const res = await this.getResource(`/starships/`);
         return res.results.map((starship) => this._transformStarship(starship));
     };
 
-    async getStarship(id) {
+    getStarship = async (id) => {
         const starship= await this.getResource(`/starships/${id}/`);
         return this._transformStarship(starship);
     };
 
-    async getFilm(id) {
+    getFilm = async (id) => {
         const film = await this.getResource(`/films/${id}/`);
         return this._transformFilm(film);
     };
 
-    _extractId(item) {
+    _extractId = (item) => {
         const idRegExp = /\/([0-9]*)\/$/;
         return item.url.match(idRegExp)[1];
     }
@@ -69,7 +69,6 @@ export default class SwapiService {
             name: person.name,
             gender: person.gender,
             birthYear: person.birth_year,
-            homeworld: person.homeworld,
             height: person.height,
             mass: person.mass,
             eyeColor: person.eye_color,
@@ -98,5 +97,17 @@ export default class SwapiService {
             population: planet.population,
             terrain: planet.terrain,
         }
-    }
+    };
+
+    getPersonImage = ({ id }) => {
+        return `https://starwars-visualguide.com/assets/img/characters/${id}.jpg`
+    };
+
+    getStarshipImage = ({ id }) => {
+        return `https://starwars-visualguide.com/assets/img/starships/${id}.jpg`
+    };
+
+    getPlanetImage = ({ id }) => {
+        return `https://starwars-visualguide.com/assets/img/planets/${id}.jpg`
+    };
 };

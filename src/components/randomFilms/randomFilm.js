@@ -5,7 +5,7 @@ import Loader from '../loader/loader';
 import ErrorMessage from '../errorMessage/errorMessage';
 
 import './randomFilm.css';
-import { async } from 'q';
+import { setInterval } from 'timers';
 
 export default class RandomFilm extends React.Component {
 
@@ -19,6 +19,11 @@ export default class RandomFilm extends React.Component {
 
     componentDidMount() {
         this.updateFilm();
+        this.interval = setInterval(this.updateFilm, 5000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
     }
 
     updateFilm = async () => {
