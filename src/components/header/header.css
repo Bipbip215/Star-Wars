@@ -1,6 +1,11 @@
-.header h2 {
+.header h2 a {
     margin-right: 140px;
     color: yellow;
+}
+
+.header h2 a:hover {
+    color: white;
+    text-decoration: none;
 }
 
 .header-panel {
@@ -13,6 +18,7 @@
     background-color: yellow;
     border-color: yellow;
     margin-right: 40px;
+    
 }
 
 .btn:hover {
@@ -25,3 +31,7 @@
     border-color: yellow;
     background-color: black;
 }
+
+.btn:focus {
+    box-shadow: none;
+  }

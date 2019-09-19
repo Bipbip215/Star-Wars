@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import SwapiService from '../../service/swapiService';
 import Loader from '../loader/loader';
@@ -9,6 +10,14 @@ import { setInterval } from 'timers';
 
 export default class RandomFilm extends React.Component {
 
+    static defaultProps = {
+        updateInterval: 10000
+    };
+
+    static propTypes = {
+        updateInterval: PropTypes.number
+    };
+
     swapiService = new SwapiService();
 
     state = {
@@ -18,13 +27,14 @@ export default class RandomFilm extends React.Component {
     };
 
     componentDidMount() {
+        const { updateInterval } = this.props;
         this.updateFilm();
-        this.interval = setInterval(this.updateFilm, 5000);
-    }
+        this.interval = setInterval(this.updateFilm, updateInterval);
+    };
 
     componentWillUnmount() {
         clearInterval(this.interval);
-    }
+    };
 
     updateFilm = async () => {
         try {
@@ -55,6 +65,8 @@ export default class RandomFilm extends React.Component {
         );
     };
 };
+
+
 
 
 const FilmView = ({ film }) => {

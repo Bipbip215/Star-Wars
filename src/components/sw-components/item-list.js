@@ -8,7 +8,8 @@ const swapiService = new SwapiService();
 const { 
     getAllPeople,
     getAllPlanets,
-    getAllStarships
+    getAllStarships,
+    getAllSpecies,
 } = swapiService;
 
 const withChildFunction = (Wrapped, fn) => {
@@ -36,8 +37,13 @@ const StarshipList = withData(
                         withChildFunction(ItemList, renderName),
                         getAllStarships);
 
+const SpiciesList = withData(
+    withChildFunction(ItemList, renderName),
+    getAllSpecies);
+
 export {
     PersonList,
     PlanetList,
-    StarshipList
+    StarshipList,
+    SpiciesList
 }

@@ -43,6 +43,16 @@ export default class SwapiService {
         return this._transformStarship(starship);
     };
 
+    getAllSpecies = async () => {
+        const res = await this.getResource(`/species/`);
+        return res.results.map((species) => this._transformSpecies(species));
+    };
+
+    getSpecies = async (id) => {
+        const species= await this.getResource(`/species/${id}/`);
+        return this._transformSpecies(species);
+    };
+
     getFilm = async (id) => {
         const film = await this.getResource(`/films/${id}/`);
         return this._transformFilm(film);
@@ -99,6 +109,16 @@ export default class SwapiService {
         }
     };
 
+    _transformSpecies(species) {
+        return {
+            id: this._extractId(species),
+            name: species.name,
+            classification: species.classification,
+            designation: species.designation,
+            averageHeight: species.average_height 
+        }
+    }
+
     getPersonImage = ({ id }) => {
         return `https://starwars-visualguide.com/assets/img/characters/${id}.jpg`
     };
@@ -109,5 +129,9 @@ export default class SwapiService {
 
     getPlanetImage = ({ id }) => {
         return `https://starwars-visualguide.com/assets/img/planets/${id}.jpg`
+    };
+
+    getSpeciesImage = ({ id }) => {
+        return `https://starwars-visualguide.com/assets/img/species/${id}.jpg`
     };
 };

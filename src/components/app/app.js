@@ -5,9 +5,11 @@ import RandomFilm from '../randomFilms/randomFilm';
 import SwapiService from '../../service/swapiService';
 import ErrorBoundry from '../errorBoundry/errorBoundry';
 
-import { PeoplePage, PlanetPage, StarshipPage } from '../pages/'
+import { PeoplePage, PlanetPage, StarshipPage, SpeciesPage } from '../pages/'
 
 import './app.css';
+
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 export default class App extends React.Component {
 
@@ -21,13 +23,21 @@ export default class App extends React.Component {
 
         return (
             <ErrorBoundry>
-                <div className="star-app d-flex">
-                    <Header />
-                    <RandomFilm />
-                    <PeoplePage />
-                    <PlanetPage />
-                    <StarshipPage />
-                </div>
+                <Router>
+                    <div className="star-app d-flex">
+                        <Header />
+                        <RandomFilm />
+
+                        <Route path="/" 
+                               render={() => <h2>Welcome to Star Wars</h2>} 
+                               exact/>
+                        <Route path="/people/:id?" component={PeoplePage} />
+                        <Route path='/planets/:id?' component={PlanetPage} />
+                        <Route path='/starships/:id?' component={StarshipPage} />
+                        <Route path='/species/:id?' component={SpeciesPage} />
+
+                    </div>
+                </Router>
             </ErrorBoundry>
         );
     };

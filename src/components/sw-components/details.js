@@ -10,9 +10,11 @@ const {
     getPerson,
     getPlanet,
     getStarship,
+    getSpecies,
     getPersonImage,
     getStarshipImage,
-    getPlanetImage
+    getPlanetImage,
+    getSpeciesImage,
 } = swapiService;
 
 
@@ -66,8 +68,24 @@ const StarshipDetails = ({ itemId }) => {
     )
 };
 
+const SpeciesDetails = ({ itemId }) => {
+    return (
+        <ItemDetails 
+            itemId={itemId}
+            getData={ getSpecies }
+            getImageUrl={ getSpeciesImage }>
+
+            <Record field="classification" label="Classification" />
+            <Record field="designation" label="Designation" />
+            <Record field="averageHeight" label="Average Height" />
+            
+        </ItemDetails>
+    )
+};
+
 export {
     PersonDetails,
     PlanetDetails,
-    StarshipDetails
+    StarshipDetails,
+    SpeciesDetails
 }
