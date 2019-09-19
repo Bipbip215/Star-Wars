@@ -1,1 +1,1 @@
-Star wart project
+Версия сайта http://f0337393.xsph.ru/
